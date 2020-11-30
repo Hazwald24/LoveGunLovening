@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 1
-  controlID: 137
+  controlID: 149
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 221}
   m_MaxSize: {x: 12003, y: 4021}
   vertical: 0
-  controlID: 138
+  controlID: 150
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 332, y: 271}
   m_MaxSize: {x: 14002, y: 10021}
   vertical: 0
-  controlID: 169
+  controlID: 101
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -424,9 +424,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: d42e0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 52c3ffff6ec3ffff54c4ffff66c4ffff78c4ffff92c4ffff4afbffff
+      m_ExpandedIDs: 4afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -486,9 +486,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -76.89, y: 2.25, z: 134.52}
+    m_Target: {x: -60.782085, y: 4.5677752, z: 163.20326}
     speed: 2
-    m_Value: {x: -76.89, y: 2.25, z: 134.52}
+    m_Value: {x: -60.782085, y: 4.5677752, z: 163.20326}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -534,13 +534,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.3567148, y: 0.019313183, z: -0.0074929646, w: -0.93405217}
+    m_Target: {x: -0.049654525, y: -0.2522126, z: 0.012847376, w: -0.9663812}
     speed: 2
-    m_Value: {x: -0.35669196, y: 0.019311946, z: -0.007492485, w: -0.9339924}
+    m_Value: {x: -0.049651187, y: -0.25219566, z: 0.012846513, w: -0.9663162}
   m_Size:
-    m_Target: 19.954153
+    m_Target: 3.8793561
     speed: 2
-    m_Value: 19.954153
+    m_Value: 3.8793561
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -761,19 +761,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Our Assets
+    - Assets/FPS/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Our Assets
+  - Assets/FPS/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Harry\Documents\GitHub\LoveGun\Love Gun
+  m_LastProjectPath: C:\Users\Harry\LoveGunLovening\Love Gun
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 80}
-    m_SelectedIDs: 624d0000
-    m_LastClickedID: 19810
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 304d0000
+    m_LastClickedID: 19760
     m_ExpandedIDs: 00000000024d0000044d0000064d0000084d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000002440000043f0000e63900002e3a00000000000070420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -854,7 +854,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 368}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 193
