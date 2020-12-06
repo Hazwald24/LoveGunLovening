@@ -46,6 +46,7 @@ public class ObjectiveHUDManger : MonoBehaviour
         if (m_ObjectivesDictionnary.TryGetValue(objective, out ObjectiveToast toast) && toast != null)
         {
             toast.Complete();
+            
         }
         m_ObjectivesDictionnary.Remove(objective);
     }

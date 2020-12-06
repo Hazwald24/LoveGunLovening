@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Analytics;
 
 public class Health : MonoBehaviour
 {
+
     [Tooltip("Maximum amount of health")]
     public float maxHealth = 10f;
     [Tooltip("Health ratio at which the critical health vignette starts appearing")]
@@ -20,6 +22,12 @@ public class Health : MonoBehaviour
     public bool isCritical() => getRatio() <= criticalHealthRatio;
 
     bool m_IsDead;
+
+    public enum Hp_Type
+    {
+     enemyHP, playerHP
+    }
+    public Hp_Type typeOfHP;
 
     private void Start()
     {
@@ -48,6 +56,20 @@ public class Health : MonoBehaviour
         float healthBefore = currentHealth;
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        switch (typeOfHP)
+        {
+            case Hp_Type.enemyHP:
+                StaticStatTracker.sts_timesPlayerShotLanded++;
+                break;
+            //case Hp_Type.playerHP:
+
+            //    break;
+            default:
+                break;
+
+        }
+
 
         // call OnDamage action
         float trueDamageAmount = healthBefore - currentHealth;
@@ -82,6 +104,22 @@ public class Health : MonoBehaviour
         {
             if (onDie != null)
             {
+                switch (typeOfHP)
+                {
+                    case Hp_Type.enemyHP:
+                        Analytics.CustomEvent("Enemy Killed");
+                        break;
+                    case Hp_Type.playerHP:
+                        Analytics.CustomEvent("Player Died");
+
+                        Analytics.CustomEvent("Accuracy", new Vector3(StaticStatTracker.sts_bulletsFiredByPlayer, StaticStatTracker.sts_timesPlayerShotLanded, (StaticStatTracker.sts_timesPlayerShotLanded / StaticStatTracker.sts_bulletsFiredByPlayer)));
+
+                        break;
+                     default:
+                        break;
+
+                }
+
                 m_IsDead = true;
                 onDie.Invoke();
             }
