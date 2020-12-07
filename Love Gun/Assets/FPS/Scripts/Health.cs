@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
 
     public float getRatio() => currentHealth / maxHealth;
     public bool isCritical() => getRatio() <= criticalHealthRatio;
+    public ScoreSystem scoreSystemref; 
 
     bool m_IsDead;
 
@@ -108,6 +109,9 @@ public class Health : MonoBehaviour
                 {
                     case Hp_Type.enemyHP:
                         Analytics.CustomEvent("Enemy Killed");
+                        StaticStatTracker.sts_enemieskilled = StaticStatTracker.sts_enemieskilled + 2 ;
+                        //scoreSystemref.UpdateScore();
+                    
                         break;
                     case Hp_Type.playerHP:
                         Analytics.CustomEvent("Player Died");

@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72a2c2e0f8c9194f9ab3b97752e8fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreSystemref: {fileID: 0}
+  cookie: 1
   verticalBobFrequency: 1
   bobbingAmount: 1
   rotatingSpeed: 360

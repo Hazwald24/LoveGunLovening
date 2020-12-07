@@ -3,7 +3,12 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class Pickup : MonoBehaviour
+ 
+
 {
+    public ScoreSystem scoreSystemref;
+    public bool cookie;
+
     [Tooltip("Frequency at which the item will move up and down")]
     public float verticalBobFrequency = 1f;
     [Tooltip("Distance the item will move up and down")]
@@ -56,6 +61,13 @@ public class Pickup : MonoBehaviour
         {
             if (onPick != null)
             {
+                if (cookie)
+                {
+                    StaticStatTracker.sts_cookiespickedup = StaticStatTracker.sts_cookiespickedup + 10;
+                    //scoreSystemref.UpdateScore();
+                }
+
+
                 onPick.Invoke(pickingPlayer);
             }
         }
