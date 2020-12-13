@@ -9,6 +9,7 @@ public class Door2 : MonoBehaviour
     private bool BotEDead = false;
     private bool BotFDead = false;
     public AudioSource playSound;
+    public ScoreSystem scoreSystemref;
 
 
     // Update is called once per frame
@@ -22,7 +23,10 @@ public class Door2 : MonoBehaviour
         { BotFDead = true; }
 
         if (BotDDead && BotEDead && BotFDead)
-        { Destroy(GameObject.FindWithTag("Door2"));
+        {
+            StaticStatTracker.sts_checkpoints = StaticStatTracker.sts_checkpoints + 5;
+            scoreSystemref.UpdateScore();
+            Destroy(GameObject.FindWithTag("Door2"));
             playSound.Play();
         }
     }

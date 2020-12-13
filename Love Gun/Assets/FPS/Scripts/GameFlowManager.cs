@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class GameFlowManager : MonoBehaviour
@@ -49,6 +50,7 @@ public class GameFlowManager : MonoBehaviour
     {
         if (gameIsEnding)
         {
+
             float timeRatio = 1 - (m_TimeLoadEndGameScene - Time.time) / endSceneLoadDelay;
             endGameFadeCanvasGroup.alpha = timeRatio;
 
@@ -57,6 +59,7 @@ public class GameFlowManager : MonoBehaviour
             // See if it's time to load the end scene (after the delay)
             if (Time.time >= m_TimeLoadEndGameScene)
             {
+                Analytics.CustomEvent("Complete Time", new Vector3(0, Time.timeSinceLevelLoad, 0));
                 SceneManager.LoadScene(m_SceneToLoad);
                 gameIsEnding = false;
             }

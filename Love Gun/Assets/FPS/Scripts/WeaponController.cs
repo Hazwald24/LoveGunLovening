@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Events;
 
 public enum WeaponShootType
@@ -288,7 +289,7 @@ public class WeaponController : MonoBehaviour
 
     bool TryShoot()
     {
-        if (m_CurrentAmmo >= 1f 
+        if (m_CurrentAmmo >= 1f
             && m_LastTimeShot + delayBetweenShots < Time.time)
         {
             HandleShoot();
@@ -335,11 +336,14 @@ public class WeaponController : MonoBehaviour
     void HandleShoot()
     {
         int bulletsPerShotFinal = shootType == WeaponShootType.Charge ? Mathf.CeilToInt(currentCharge * bulletsPerShot) : bulletsPerShot;
-        
+
         // spawn all bullets with random direction
         for (int i = 0; i < bulletsPerShotFinal; i++)
         {
             Vector3 shotDirection = GetShotDirectionWithinSpread(weaponMuzzle);
+            AnalyticsResult analyticsResult = Analytics.CustomEvent("Player_BulletShot");
+            StaticStatTracker.sts_bulletsFiredByPlayer++;
+
             ProjectileBase newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(shotDirection));
             newProjectile.Shoot(this);
         }
