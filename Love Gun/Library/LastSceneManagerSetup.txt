@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Daniel B Scene.unity
+- path: Assets/FPS/Scenes/SecondaryScene - Harry.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
