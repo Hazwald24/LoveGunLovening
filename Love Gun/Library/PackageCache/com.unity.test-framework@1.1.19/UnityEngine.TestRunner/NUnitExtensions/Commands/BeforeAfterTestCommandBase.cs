@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
@@ -24,6 +25,8 @@ namespace UnityEngine.TestTools
             m_SkipYieldAfterActions = skipYieldAfterActions;
         }
 
+        internal Func<long> GetUtcNow = () => new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+        
         protected T[] BeforeActions = new T[0];
 
         protected T[] AfterActions = new T[0];
@@ -49,8 +52,19 @@ namespace UnityEngine.TestTools
 
             while (state.NextBeforeStepIndex < BeforeActions.Length)
             {
+                state.Timestamp = GetUtcNow();
                 var action = BeforeActions[state.NextBeforeStepIndex];
-                var enumerator = InvokeBefore(action, Test, unityContext);
+                IEnumerator enumerator;
+                try
+                {
+                    enumerator = InvokeBefore(action, Test, unityContext);
+                }
+                catch (Exception ex)
+                {
+                    state.TestHasRun = true;
+                    context.CurrentResult.RecordPrefixedException(m_BeforeErrorPrefix, ex);
+                    break;
+                }
                 ActivePcHelper.SetEnumeratorPC(enumerator, state.NextBeforeStepPc);
 
                 using (var logScope = new LogScope())
@@ -81,6 +95,13 @@ namespace UnityEngine.TestTools
                         else
                         {
                             yield return enumerator.Current;
+                        }
+
+                        if (GetUtcNow() - state.Timestamp > unityContext.TestCaseTimeout)
+                        {
+                            context.CurrentResult.RecordPrefixedError(m_BeforeErrorPrefix, new UnityTestTimeoutException(unityContext.TestCaseTimeout).Message);
+                            state.TestHasRun = true;
+                            break;
                         }
                     }
 
@@ -118,9 +139,20 @@ namespace UnityEngine.TestTools
 
             while (state.NextAfterStepIndex < AfterActions.Length)
             {
+                state.Timestamp = GetUtcNow();
                 state.TestAfterStarted = true;
                 var action = AfterActions[state.NextAfterStepIndex];
-                var enumerator = InvokeAfter(action, Test, unityContext);
+                IEnumerator enumerator;
+                try
+                {
+                    enumerator = InvokeAfter(action, Test, unityContext);
+                }
+                catch (Exception ex)
+                {
+                    context.CurrentResult.RecordPrefixedException(m_AfterErrorPrefix, ex);
+                    state.StoreTestResult(context.CurrentResult);
+                    break;
+                }
                 ActivePcHelper.SetEnumeratorPC(enumerator, state.NextAfterStepPc);
 
                 using (var logScope = new LogScope())
@@ -143,7 +175,13 @@ namespace UnityEngine.TestTools
 
                         state.NextAfterStepPc = ActivePcHelper.GetEnumeratorPC(enumerator);
                         state.StoreTestResult(context.CurrentResult);
-
+                        
+                        if (GetUtcNow() - state.Timestamp > unityContext.TestCaseTimeout)
+                        {
+                            context.CurrentResult.RecordPrefixedError(m_AfterErrorPrefix, new UnityTestTimeoutException(unityContext.TestCaseTimeout).Message);
+                            yield break;
+                        }
+                        
                         if (m_SkipYieldAfterActions)
                         {
                             break;
