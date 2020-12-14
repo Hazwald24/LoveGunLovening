@@ -13,6 +13,7 @@ namespace UnityEditor.TestTools.TestRunner
     internal class EditorEnumeratorTestWorkItem : UnityWorkItem
     {
         private TestCommand m_Command;
+
         public EditorEnumeratorTestWorkItem(TestMethod test, ITestFilter filter)
             : base(test, null)
         {
@@ -78,10 +79,7 @@ namespace UnityEditor.TestTools.TestRunner
                     Context.CurrentResult.SetResult(ResultState.Error, "Returning IEnumerator but not using test attribute supporting this");
                     yield break;
                 }
-                if (Context.TestCaseTimeout == 0)
-                {
-                    Context.TestCaseTimeout = k_DefaultTimeout;
-                }
+
                 if (m_Command.Test.Method.ReturnType.IsType(typeof(IEnumerator)))
                 {
                     if (m_Command is ApplyChangesToContextCommand)

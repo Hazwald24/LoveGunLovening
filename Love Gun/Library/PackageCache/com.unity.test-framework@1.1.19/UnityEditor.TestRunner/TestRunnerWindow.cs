@@ -7,10 +7,7 @@ using UnityEngine;
 namespace UnityEditor.TestTools.TestRunner
 {
     [Serializable]
-    /// <summary>
-    /// The TestRunnerWindow class is repsonsible for drawing the Test Runner window.
-    /// </summary>
-    public class TestRunnerWindow : EditorWindow, IHasCustomMenu
+    internal class TestRunnerWindow : EditorWindow, IHasCustomMenu
     {
         internal static class Styles
         {
@@ -40,7 +37,7 @@ namespace UnityEditor.TestTools.TestRunner
         private bool m_IsBuilding;
         [NonSerialized]
         private bool m_Enabled;
-        internal TestFilterSettings filterSettings;
+        public TestFilterSettings filterSettings;
 
         [SerializeField]
         private SplitterState m_Spl = new SplitterState(new float[] { 75, 25 }, new[] { 32, 32 }, null);
@@ -66,18 +63,10 @@ namespace UnityEditor.TestTools.TestRunner
         private WindowResultUpdater m_WindowResultUpdater;
 
         [MenuItem("Window/General/Test Runner", false, 201, false)]
-        /// <summary>
-        /// Launches the Test Runner window.
-        /// </summary>
-        public static void ShowWindow()
+        public static void ShowPlaymodeTestsRunnerWindowCodeBased()
         {
             s_Instance = GetWindow<TestRunnerWindow>("Test Runner");
             s_Instance.Show();
-        }
-
-        internal static void ShowPlaymodeTestsRunnerWindowCodeBased()
-        {
-            ShowWindow();
         }
 
         static TestRunnerWindow()
@@ -107,7 +96,7 @@ namespace UnityEditor.TestTools.TestRunner
             }
         }
 
-        internal void OnDestroy()
+        public void OnDestroy()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
         }
@@ -161,16 +150,15 @@ namespace UnityEditor.TestTools.TestRunner
         {
             if (!m_SelectedTestTypes.HasTreeData())
             {
-                var listToInit = m_SelectedTestTypes;
                 m_testRunnerApi.RetrieveTestList(m_SelectedTestTypes.TestMode, (rootTest) =>
                 {
-                    listToInit.Init(this, rootTest);
-                    listToInit.Reload();
+                    m_SelectedTestTypes.Init(this, rootTest);
+                    m_SelectedTestTypes.Reload();
                 });
             }
         }
 
-        internal void OnGUI()
+        public void OnGUI()
         {
             if (!m_Enabled)
             {
@@ -226,10 +214,6 @@ namespace UnityEditor.TestTools.TestRunner
                 SplitterGUILayout.EndHorizontalSplit();
         }
 
-        /// <summary>
-        /// Adds additional menu items to the Test Runner window.
-        /// </summary>
-        /// <param name="menu">The <see cref="GenericMenu"/></param>
         public void AddItemsToMenu(GenericMenu menu)
         {
             menu.AddItem(m_GUIVerticalSplit, m_Settings.verticalSplit, m_Settings.ToggleVerticalSplit);
@@ -255,7 +239,7 @@ namespace UnityEditor.TestTools.TestRunner
             });
         }
 
-        internal void RebuildUIFilter()
+        public void RebuildUIFilter()
         {
             if (m_SelectedTestTypes != null && m_SelectedTestTypes.HasTreeData())
             {
@@ -263,7 +247,7 @@ namespace UnityEditor.TestTools.TestRunner
             }
         }
 
-        internal static void UpdateWindow()
+        public static void UpdateWindow()
         {
             if (s_Instance != null && s_Instance.m_SelectedTestTypes != null)
             {

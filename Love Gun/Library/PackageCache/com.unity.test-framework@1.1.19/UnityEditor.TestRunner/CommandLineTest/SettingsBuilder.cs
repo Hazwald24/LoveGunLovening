@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEditor.TestRunner.CommandLineParser;
 using UnityEditor.TestTools.TestRunner.Api;
-using UnityEditor.TestTools.TestRunner.GUI;
+using UnityEngine.TestTools.TestRunner.GUI;
 
 namespace UnityEditor.TestTools.TestRunner.CommandLineTest
 {
@@ -66,7 +66,7 @@ namespace UnityEditor.TestTools.TestRunner.CommandLineTest
 
             var buildTarget = SetFilterAndGetBuildTarget(testPlatform, filter);
 
-            RerunCallbackData.instance.runFilters = new []{new UITestRunnerFilter()
+            RerunCallbackData.instance.runFilters = new []{new TestRunnerFilter()
             {
                 categoryNames = filter.categoryNames,
                 groupNames = filter.groupNames,

@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEditor.TestTools.TestRunner.Api;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.TestTools.TestRunner.GUI;
 
 namespace UnityEditor.TestTools.TestRunner.GUI
 {
@@ -52,7 +53,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             DrawFilters();
         }
 
-        protected override void RunTests(params UITestRunnerFilter[] filters)
+        protected override void RunTests(params TestRunnerFilter[] filters)
         {
             if (EditorUtility.scriptCompilationFailed)
             {
@@ -62,7 +63,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
 
             foreach (var filter in filters)
             {
-                filter.ClearResults(newResultList.OfType<UITestRunnerFilter.IClearableResult>().ToList());                
+                filter.ClearResults(newResultList.OfType<TestRunnerFilter.IClearableResult>().ToList());                
             }
 
             RerunCallbackData.instance.runFilters = filters;

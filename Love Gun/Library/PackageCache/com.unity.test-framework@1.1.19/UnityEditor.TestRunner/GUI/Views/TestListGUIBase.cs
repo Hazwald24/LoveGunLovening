@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using UnityEditor.IMGUI.Controls;
 using UnityEditor.TestTools.TestRunner.Api;
 using UnityEngine;
+using UnityEngine.TestTools.TestRunner.GUI;
 using UnityEngine.TestTools;
 
 namespace UnityEditor.TestTools.TestRunner.GUI
@@ -51,7 +52,6 @@ namespace UnityEditor.TestTools.TestRunner.GUI
         protected IMonoCecilHelper MonoCecilHelper { get; private set; }
         protected IAssetsDatabaseHelper AssetsDatabaseHelper { get; private set; }
         protected IGuiHelper GuiHelper { get; private set; }
-        protected UITestRunnerFilter[] SelectedTestsFilter => GetSelectedTestsAsFilter(m_TestListTree.GetSelection());
 
         public abstract TestMode TestMode { get; }
 
@@ -62,7 +62,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             {
                 if (GUILayout.Button(s_GUIRunAllTests, EditorStyles.toolbarButton))
                 {
-                    var filter = new UITestRunnerFilter {categoryNames = m_TestRunnerUIFilter.CategoryFilter};
+                    var filter = new TestRunnerFilter {categoryNames = m_TestRunnerUIFilter.CategoryFilter};
                     RunTests(filter);
                     GUIUtility.ExitGUI();
                 }
@@ -71,7 +71,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             {
                 if (GUILayout.Button(s_GUIRunSelectedTests, EditorStyles.toolbarButton))
                 {
-                    RunTests(SelectedTestsFilter);
+                    RunTests(GetSelectedTestsAsFilter(m_TestListTree.GetSelection()));
                     GUIUtility.ExitGUI();
                 }
             }
@@ -88,7 +88,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
                             result.resultStatus == TestRunnerResult.ResultStatus.Inconclusive)
                             failedTestnames.Add(result.fullName);
                     }
-                    RunTests(new UITestRunnerFilter() {testNames = failedTestnames.ToArray(), categoryNames = m_TestRunnerUIFilter.CategoryFilter});
+                    RunTests(new TestRunnerFilter() {testNames = failedTestnames.ToArray(), categoryNames = m_TestRunnerUIFilter.CategoryFilter});
                     GUIUtility.ExitGUI();
                 }
             }
@@ -101,7 +101,6 @@ namespace UnityEditor.TestTools.TestRunner.GUI
                         result.Clear();
                     }
                     m_TestRunnerUIFilter.UpdateCounters(newResultList);
-                    Reload();
                     GUIUtility.ExitGUI();
                 }
             }
@@ -321,7 +320,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             GUIUtility.ExitGUI();
         }
 
-        protected virtual void RunTests(params UITestRunnerFilter[] filters)
+        protected virtual void RunTests(params TestRunnerFilter[] filters)
         {
             throw new NotImplementedException();
         }
@@ -405,7 +404,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             m.ShowAsContext();
         }
 
-        private UITestRunnerFilter[] GetSelectedTestsAsFilter(IEnumerable<int> selectedIDs)
+        private TestRunnerFilter[] GetSelectedTestsAsFilter(IEnumerable<int> selectedIDs)
         {
             var namesToRun = new List<string>();
             var assembliesForNamesToRun = new List<string>();
@@ -422,17 +421,17 @@ namespace UnityEditor.TestTools.TestRunner.GUI
                         if (testLine.parent != null && testLine.parent.displayName == "Invisible Root Item")
                         {
                             //Root node selected. Use an empty TestRunnerFilter to run every test
-                            return new[] {new UITestRunnerFilter()};
+                            return new[] {new TestRunnerFilter()};
                         }
 
                         if (testLine.FullName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
                         {
-                            assembliesToRun.Add(UITestRunnerFilter.AssemblyNameFromPath(testLine.FullName));
+                            assembliesToRun.Add(TestRunnerFilter.AssemblyNameFromPath(testLine.FullName));
                         }
                         else
                         {
                             namesToRun.Add($"^{Regex.Escape(testLine.FullName)}$");
-                            var assembly = UITestRunnerFilter.AssemblyNameFromPath(testLine.GetAssemblyName());
+                            var assembly = TestRunnerFilter.AssemblyNameFromPath(testLine.GetAssemblyName());
                             if (!string.IsNullOrEmpty(assembly) && !assembliesForNamesToRun.Contains(assembly))
                             {
                                 assembliesForNamesToRun.Add(assembly);
@@ -446,11 +445,11 @@ namespace UnityEditor.TestTools.TestRunner.GUI
                 }
             }
 
-            var filters = new List<UITestRunnerFilter>();
+            var filters = new List<TestRunnerFilter>();
 
             if (assembliesToRun.Count > 0)
             {
-                filters.Add(new UITestRunnerFilter()
+                filters.Add(new TestRunnerFilter()
                 {
                     assemblyNames = assembliesToRun.ToArray()
                 });
@@ -458,7 +457,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             
             if (namesToRun.Count > 0)
             {
-                filters.Add(new UITestRunnerFilter()
+                filters.Add(new TestRunnerFilter()
                 {
                     groupNames = namesToRun.ToArray(),
                     assemblyNames = assembliesForNamesToRun.ToArray()
@@ -467,7 +466,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             
             if (exactNamesToRun.Count > 0)
             {
-                filters.Add(new UITestRunnerFilter()
+                filters.Add(new TestRunnerFilter()
                 {
                     testNames = exactNamesToRun.ToArray()
                 });
@@ -475,7 +474,7 @@ namespace UnityEditor.TestTools.TestRunner.GUI
             
             if (filters.Count == 0)
             {
-                filters.Add(new UITestRunnerFilter());
+                filters.Add(new TestRunnerFilter());
             }
 
             var categories = m_TestRunnerUIFilter.CategoryFilter.ToArray();

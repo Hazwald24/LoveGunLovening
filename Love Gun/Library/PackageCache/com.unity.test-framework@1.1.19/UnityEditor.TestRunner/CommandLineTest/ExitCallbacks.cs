@@ -35,7 +35,7 @@ namespace UnityEditor.TestTools.TestRunner.CommandLineTest
 
         public void TestFinished(ITestResultAdaptor result)
         {
-            if (!result.Test.IsSuite && (result.TestStatus == TestStatus.Failed || result.TestStatus == TestStatus.Inconclusive))
+            if (!result.Test.IsSuite && (result.TestStatus == TestStatus.Failed))
             {
                 m_RunFailed = true;
             }

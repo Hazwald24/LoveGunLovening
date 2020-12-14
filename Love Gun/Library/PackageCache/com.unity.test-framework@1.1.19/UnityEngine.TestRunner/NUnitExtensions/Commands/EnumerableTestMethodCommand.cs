@@ -25,17 +25,7 @@ namespace UnityEngine.TestTools
         {
             yield return null;
 
-            IEnumerator currentExecutingTestEnumerator;
-            try
-            {
-                currentExecutingTestEnumerator = new TestEnumeratorWrapper(testMethod).GetEnumerator(context);
-            }
-            catch (Exception ex)
-            {
-                context.CurrentResult.RecordException(ex);
-                yield break;
-            }
-            
+            var currentExecutingTestEnumerator = new TestEnumeratorWrapper(testMethod).GetEnumerator(context);
             if (currentExecutingTestEnumerator != null)
             {
                 var testEnumeraterYieldInstruction = new TestEnumerator(context, currentExecutingTestEnumerator);

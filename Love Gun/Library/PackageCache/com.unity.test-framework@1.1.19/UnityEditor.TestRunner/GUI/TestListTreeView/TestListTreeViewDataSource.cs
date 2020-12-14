@@ -4,6 +4,7 @@ using UnityEditor.IMGUI.Controls;
 using UnityEditor.TestTools.TestRunner.Api;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools.TestRunner;
+using UnityEngine.TestTools.TestRunner.GUI;
 
 namespace UnityEditor.TestTools.TestRunner.GUI
 {
