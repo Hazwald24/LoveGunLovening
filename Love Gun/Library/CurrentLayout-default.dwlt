@@ -48,7 +48,11 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 171
+=======
+  controlID: 105
+>>>>>>> School-Layout
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -93,8 +97,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 320
     height: 676
+=======
+    width: 309
+    height: 595
+>>>>>>> School-Layout
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
@@ -220,7 +229,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 98
+  controlID: 157
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,11 +250,15 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1337
+<<<<<<< HEAD
     height: 676
+=======
+    height: 595
+>>>>>>> School-Layout
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 99
+  controlID: 158
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -365,20 +378,26 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/FPS/Prefabs/Enemies
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/FPS/Prefabs/Enemies
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Mr JayLazza Sir\Documents\LoveGunLovening\Love Gun
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
+<<<<<<< HEAD
     m_SelectedIDs: a2130100
     m_LastClickedID: 70562
     m_ExpandedIDs: 000000009c1301009e130100a0130100a2130100e0130100ee130100f6130100fa130100001401001a140100221401009acb0100c2d1010000ca9a3b
+=======
+    m_SelectedIDs: ccd90000
+    m_LastClickedID: 55756
+    m_ExpandedIDs: 000000004cd900004ed9000050d9000052d9000092d9000096d90000ced9000038de000000ca9a3b
+>>>>>>> School-Layout
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -406,7 +425,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000009c1301009e130100a0130100a2130100
+=======
+    m_ExpandedIDs: 000000004cd900004ed9000050d9000052d90000
+>>>>>>> School-Layout
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -531,7 +554,11 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 9c130100
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: d8c354fb42c654fb66c854fb5ec954fbcac954fb30ef54fb00f054fb42f054fb66f054fb72f054fba0252b00c4252b00
+=======
+      m_ExpandedIDs: c80fffff0617ffff4afbffff2445000028450000
+>>>>>>> School-Layout
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -591,9 +618,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 16.265919, y: 0.2925325, z: 126.65346}
     speed: 2
     m_Value: {x: 16.265919, y: 0.2925325, z: 126.65346}
+=======
+    m_Target: {x: -23.052734, y: 3.7446277, z: 50.72468}
+    speed: 2
+    m_Value: {x: -23.052732, y: 3.7446282, z: 50.724667}
+>>>>>>> School-Layout
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -639,6 +672,7 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.025146302, y: 0.9750396, z: -0.15793256, w: 0.15453212}
     speed: 2
     m_Value: {x: 0.025381176, y: 0.97473, z: -0.15788224, w: 0.15598223}
@@ -646,6 +680,15 @@ MonoBehaviour:
     m_Target: 12.358674
     speed: 2
     m_Value: 12.94102
+=======
+    m_Target: {x: 0.013008838, y: -0.084021434, z: 0.0039132847, w: 0.99670786}
+    speed: 2
+    m_Value: {x: 0.00852601, y: -0.082515314, z: 0.0035206852, w: 0.99654704}
+  m_Size:
+    m_Target: 1.0271317
+    speed: 2
+    m_Value: 1.0271317
+>>>>>>> School-Layout
   m_Ortho:
     m_Target: 0
     speed: 2
