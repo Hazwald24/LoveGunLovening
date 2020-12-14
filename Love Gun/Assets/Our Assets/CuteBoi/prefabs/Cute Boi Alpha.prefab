@@ -5540,7 +5540,7 @@ GameObject:
   - component: {fileID: 7986320944734184961}
   - component: {fileID: 8332438463081070032}
   m_Layer: 0
-  m_Name: Cute Boi (Agro)
+  m_Name: Cute Boi Alpha
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5624,7 +5624,7 @@ MonoBehaviour:
   deathVFXSpawnPoint: {fileID: 6956147623400261782}
   lootPrefab: {fileID: 2529580269645609534, guid: 9973c412032becb4ca116ca08be62edf,
     type: 3}
-  dropRate: 1
+  dropRate: 0.251
   pathReachingRangeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   attackRangeColor: {r: 1, g: 0, b: 0, a: 1}
   detectionRangeColor: {r: 0, g: 0, b: 1, a: 1}
@@ -5670,6 +5670,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   criticalHealthRatio: 0.3
+  scoreSystemref: {fileID: 0}
+  typeOfHP: 0
 --- !u!114 &6185211505210849174
 MonoBehaviour:
   m_ObjectHideFlags: 0
