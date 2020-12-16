@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 6956147623400261782}
   - component: {fileID: 2695007706753357244}
   - component: {fileID: 4384458985196954698}
-  - component: {fileID: 7940504424230584823}
+  - component: {fileID: 3996891647759615115}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -623,7 +623,7 @@ CapsuleCollider:
   m_Height: 1.1573027
   m_Direction: 1
   m_Center: {x: 0.232393, y: -0.07865142, z: -0.008133645}
---- !u!114 &7940504424230584823
+--- !u!114 &3996891647759615115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

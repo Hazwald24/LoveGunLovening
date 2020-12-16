@@ -14,10 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FPS/Scenes/LoseScene.unity
     guid: 72e5c65a45893714484002914e3fd521
-  - enabled: 1
-    path: Assets/MainScene.unity
-    guid: d794a2ef8ba31d847ad3c19d03e2ddb9
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Daniel P Scene.unity
     guid: a0a4ee9264d5e1c49a1800f5bab66090
+  - enabled: 1
+    path: Assets/FPS/Scenes/MainScene.unity
+    guid: 5dd06c176d2aff241935f8ffa935e69b
+  - enabled: 1
+    path: Assets/Daniel B Scene.unity
+    guid: ebc3e422a190b7e41bf7215eacaab821
   m_configObjects: {}

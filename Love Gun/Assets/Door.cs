@@ -13,5 +13,6 @@ public class Door : MonoBehaviour
         {
             Destroy(door);
         }
+        Debug.Log(StaticStatTracker.sts_enemieskilled);
     }
 }
