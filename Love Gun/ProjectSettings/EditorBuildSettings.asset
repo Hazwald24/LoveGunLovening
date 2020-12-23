@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Daniel P Scene.unity
     guid: a0a4ee9264d5e1c49a1800f5bab66090
   - enabled: 1
